@@ -1,28 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de Calificaciones</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>{{ title }}</h1>
-
+    <h1>Carga de Calificaciones</h1>
+    {% if data %}
+        <table border="1">
+            <tr>
+                <th style="width: 50%">Nombre</th>
+                <th style="width: 25%">AA</th>
+                <th style="width: 25%">EF</th>
+            </tr>
+            {% for index, row in data.iterrows() %}
+                <tr>
+                    <td>{{ row['Nombre'] }}</td>
+                    <td>{{ row['AA'] }}</td>
+                    <td>{{ row['EF'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
     {% if error %}
         <p>{{ error }}</p>
-    {% endif %}
-
-    <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".xls,.xlsx">
-        <input type="submit" value="Cargar archivo">
-    </form>
-
-    {% if data %}
-        <h2>Datos del archivo {{ filename }}</h2>
-        {{ data | safe }}
-        <form action="/download" method="post">
-            <input type="hidden" name="filename" value="{{ filename }}">
-            <input type="submit" value="Descargar PDF">
-        </form>
     {% endif %}
 </body>
 </html>
