@@ -43,17 +43,17 @@ def download():
     col_widths = [50, 40, 40]  # Anchuras de las columnas
     pdf.set_fill_color(200)
     pdf.set_font('Arial', 'B', 12)
-    pdf.cell(col_widths[0], 10, 'Nombre', border=1, ln=False)
-    pdf.cell(col_widths[1], 10, 'AA', border=1, ln=False, align='C')  # Centrar AA
-    pdf.cell(col_widths[2], 10, 'EF', border=1, ln=True, align='C')   # Centrar EF
+    pdf.cell(col_widths[0], 10, 'Nombre', border=1, ln=False, align='C')  # Centrar el título de Nombre
+    pdf.cell(col_widths[1], 10, 'AA', border=1, ln=False, align='C')
+    pdf.cell(col_widths[2], 10, 'EF', border=1, ln=True, align='C')
     
     # Datos del archivo
     pdf.set_font('Arial', '', 12)
     data_columns = uploaded_file.columns.tolist()
     for index, row in uploaded_file.iterrows():
         pdf.cell(col_widths[0], 10, str(row[data_columns[0]]), border=1, ln=False)
-        pdf.cell(col_widths[1], 10, str(row[data_columns[1]]), border=1, ln=False, align='C')  # Centrar AA
-        pdf.cell(col_widths[2], 10, str(row[data_columns[2]]), border=1, ln=True, align='C')   # Centrar EF
+        pdf.cell(col_widths[1], 10, str(row[data_columns[1]]), border=1, ln=False, align='C')
+        pdf.cell(col_widths[2], 10, str(row[data_columns[2]]), border=1, ln=True, align='C')
 
     # Línea para firma
     pdf.ln(10)
